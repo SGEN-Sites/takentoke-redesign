@@ -1,6 +1,6 @@
-# Reforge record — takentoke-redesign
+# Reforge record: takentoke-redesign
 
-- Source: (not recorded)
+- Source: https://takentoke.com/
 - Preview: https://sgen-sites.github.io/takentoke-redesign/
 - Repo: https://github.com/SGEN-Sites/takentoke-redesign
 - Built: 2026-11-10T16:55:39.145Z
