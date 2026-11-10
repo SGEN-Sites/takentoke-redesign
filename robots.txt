@@ -1,0 +1,139 @@
+User-Agent: Googlebot
+
+User-Agent: Googlebot-Image
+
+User-Agent: Googlebot-News
+
+User-Agent: Googlebot-Video
+
+User-Agent: Bingbot
+
+User-Agent: DuckDuckBot
+
+User-Agent: Slurp
+
+User-Agent: Baiduspider
+
+User-Agent: YandexBot
+
+User-Agent: Applebot
+
+User-Agent: Naver
+
+User-Agent: Sogou web spider
+
+User-Agent: facebot
+
+User-Agent: ia_archiver
+
+User-Agent: GPTBot
+
+User-Agent: ChatGPT-User
+
+User-Agent: OAI-SearchBot
+
+User-Agent: OAI-AdsBot
+
+User-Agent: OAI-ResearchBot
+
+User-Agent: ChatGPT-Vision
+
+User-Agent: GPTBot-Vision
+
+User-Agent: ClaudeBot
+
+User-Agent: Claude-Web
+
+User-Agent: anthropic-ai
+
+User-Agent: Claude-SearchBot
+
+User-Agent: Google-Extended
+
+User-Agent: GoogleOther
+
+User-Agent: Applebot-Extended
+
+User-Agent: PerplexityBot
+
+User-Agent: Perplexity-User
+
+User-Agent: Meta-ExternalAgent
+
+User-Agent: Meta-ExternalFetcher
+
+User-Agent: FacebookBot
+
+User-Agent: CCBot
+
+User-Agent: Amazonbot
+
+User-Agent: Bytespider
+
+User-Agent: Diffbot
+
+User-Agent: ImagesiftBot
+
+User-Agent: Cohere-ai
+
+User-Agent: AndiBot
+
+User-Agent: PhindBot
+
+User-Agent: MistralAI-User
+
+User-Agent: YouBot
+
+User-Agent: Timpibot
+
+User-Agent: Awario
+
+User-Agent: DuckAssistBot
+
+User-Agent: Webzio-Extended
+
+User-Agent: OmgiliBot
+
+User-Agent: Omgili
+
+User-Agent: PetalBot
+
+User-Agent: Bingbot-Extended
+
+User-Agent: AhrefsBot
+
+User-Agent: AhrefsSiteAudit
+
+User-Agent: SemrushBot
+
+User-Agent: SemrushBot-SA
+
+User-Agent: MJ12bot
+
+User-Agent: DotBot
+
+User-Agent: BLEXBot
+
+User-Agent: Mediatoolkitbot
+
+User-Agent: ScreamingFrogSEOSpider
+
+User-Agent: rogerbot
+
+User-Agent: DataForSeoBot
+
+User-Agent: SeekportBot
+
+User-Agent: SiteAuditBot
+
+User-Agent: LinkpadBot
+
+User-Agent: Linkdex
+
+User-Agent: SerpstatBot
+
+User-Agent: *
+
+Host: https://takentoke.com
+
+Sitemap: https://takentoke.com/sitemap.xml

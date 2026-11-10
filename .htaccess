@@ -1,0 +1,260 @@
+# site-reforge redirect map (Apache). Each source redirect matched exactly: mod_alias Redirect is a prefix match.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # /contact serves contact.html, unless a real file or directory answers it.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+)$ $1.html [L]
+</IfModule>
+<IfModule mod_headers.c>
+  <If "%{REQUEST_URI} in { '/', '/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/about/', '/about/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/blog/', '/blog/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/blog/atlantic-avenue-cannabis-culture/', '/blog/atlantic-avenue-cannabis-culture/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/blog/best-cannabis-products-for-beginners/', '/blog/best-cannabis-products-for-beginners/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/blog/brooklyn-dispensary-guide/', '/blog/brooklyn-dispensary-guide/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/blog/cannabis-events-brooklyn-2026/', '/blog/cannabis-events-brooklyn-2026/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/blog/cannabis-near-barclays-center/', '/blog/cannabis-near-barclays-center/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/blog/crown-heights-cannabis-scene/', '/blog/crown-heights-cannabis-scene/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/blog/prospect-park-area-dispensary-guide/', '/blog/prospect-park-area-dispensary-guide/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/blog/what-to-know-before-visiting-brooklyn-dispensary/', '/blog/what-to-know-before-visiting-brooklyn-dispensary/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/brooklyn-dispensary/', '/brooklyn-dispensary/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/contact/', '/contact/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/deals/', '/deals/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/dispensary-bed-stuy/', '/dispensary-bed-stuy/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/dispensary-boerum-hill/', '/dispensary-boerum-hill/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/dispensary-brooklyn-heights/', '/dispensary-brooklyn-heights/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/dispensary-clinton-hill/', '/dispensary-clinton-hill/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/dispensary-cobble-hill/', '/dispensary-cobble-hill/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/dispensary-crown-heights/', '/dispensary-crown-heights/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/dispensary-downtown-brooklyn/', '/dispensary-downtown-brooklyn/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/dispensary-flatbush/', '/dispensary-flatbush/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/dispensary-fort-greene/', '/dispensary-fort-greene/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/dispensary-near-atlantic-terminal/', '/dispensary-near-atlantic-terminal/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/dispensary-near-barclays-center/', '/dispensary-near-barclays-center/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/dispensary-near-brooklyn-museum/', '/dispensary-near-brooklyn-museum/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/dispensary-near-prospect-park/', '/dispensary-near-prospect-park/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/dispensary-park-slope/', '/dispensary-park-slope/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/dispensary-prospect-heights/', '/dispensary-prospect-heights/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/dispensary-williamsburg/', '/dispensary-williamsburg/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/faq/', '/faq/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/first-time-visitors/', '/first-time-visitors/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/learn/', '/learn/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/learn/best-strains-for-anxiety/', '/learn/best-strains-for-anxiety/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/learn/best-strains-for-sleep/', '/learn/best-strains-for-sleep/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/learn/cannabis-basics/', '/learn/cannabis-basics/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/learn/cannabis-concentrates-guide/', '/learn/cannabis-concentrates-guide/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/learn/cannabis-consumption-methods/', '/learn/cannabis-consumption-methods/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/learn/cannabis-effects/', '/learn/cannabis-effects/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/learn/cannabis-laws-new-york/', '/learn/cannabis-laws-new-york/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/learn/cannabis-storage/', '/learn/cannabis-storage/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/learn/cannabis-strains-guide/', '/learn/cannabis-strains-guide/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/learn/cannabis-tax-nyc/', '/learn/cannabis-tax-nyc/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/learn/cbd-vs-cbn-vs-cbg/', '/learn/cbd-vs-cbn-vs-cbg/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/learn/choosing-a-strain/', '/learn/choosing-a-strain/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/learn/dispensary-near-me-how-to-choose/', '/learn/dispensary-near-me-how-to-choose/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/learn/edibles-dosing-guide/', '/learn/edibles-dosing-guide/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/learn/first-time-dispensary-visit-nyc/', '/learn/first-time-dispensary-visit-nyc/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/learn/how-to-get-cannabis-in-brooklyn/', '/learn/how-to-get-cannabis-in-brooklyn/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/learn/how-to-read-cannabis-labels/', '/learn/how-to-read-cannabis-labels/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/learn/licensed-vs-unlicensed-dispensary-nyc/', '/learn/licensed-vs-unlicensed-dispensary-nyc/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/learn/live-resin-vs-distillate/', '/learn/live-resin-vs-distillate/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/learn/pre-rolls-vs-flower/', '/learn/pre-rolls-vs-flower/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/learn/responsible-use/', '/learn/responsible-use/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/learn/terpenes-explained/', '/learn/terpenes-explained/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/learn/thc-vs-cbd/', '/learn/thc-vs-cbd/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/learn/thca-vs-thc/', '/learn/thca-vs-thc/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/learn/types-of-products/', '/learn/types-of-products/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/location/', '/location/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/menu/', '/menu/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/menu/?dtche[category]=Concentrates', '/menu/?dtche[category]=Concentrates.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/menu/?dtche[category]=Edibles', '/menu/?dtche[category]=Edibles.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/menu/?dtche[category]=Flower', '/menu/?dtche[category]=Flower.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/menu/?dtche[category]=Pre-Rolls', '/menu/?dtche[category]=Pre-Rolls.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/menu/?dtche[category]=Tinctures', '/menu/?dtche[category]=Tinctures.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/menu/?dtche[category]=Vaporizers', '/menu/?dtche[category]=Vaporizers.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/menu/?dtche[category]=Concentrates', '/menu/?dtche[category]=Concentrates.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/menu/?dtche[category]=Edibles', '/menu/?dtche[category]=Edibles.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/menu/?dtche[category]=Flower', '/menu/?dtche[category]=Flower.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/menu/?dtche[category]=Pre-Rolls', '/menu/?dtche[category]=Pre-Rolls.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/menu/?dtche[category]=Tinctures', '/menu/?dtche[category]=Tinctures.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/menu/?dtche[category]=Vaporizers', '/menu/?dtche[category]=Vaporizers.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/privacy-policy/', '/privacy-policy/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/products/', '/products/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/products/concentrates/', '/products/concentrates/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/products/edibles/', '/products/edibles/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/products/flower/', '/products/flower/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/products/pre-rolls/', '/products/pre-rolls/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/products/tinctures/', '/products/tinctures/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/products/vapes/', '/products/vapes/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/sitemap/', '/sitemap/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/terms-of-service/', '/terms-of-service/index.html' }">
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  </If>
+  <If "%{REQUEST_URI} in { '/llms.txt' }">
+    Header set X-Robots-Tag "noindex"
+  </If>
+</IfModule>
