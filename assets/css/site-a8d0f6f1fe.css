@@ -544,16 +544,45 @@ html.gate-open, html.drawer-open { overflow: hidden; }
 /* ---------- hero ---------- */
 .h-hero { position: relative; z-index: 4; min-height: max(560px, min(100svh, 880px)); display: flex; flex-direction: column; padding-top: var(--hdr-h); isolation: isolate; }
 .h-hero__art { z-index: -1; background: var(--ink-950); }
-.h-hero__art img, .h-hero__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 66% 50%; }
+.h-hero__art img, .h-hero__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 68% 50%; }
 .h-hero__video { opacity: 0; transition: opacity 1.4s var(--ease); }
 .h-hero__video.is-playing { opacity: 1; }
 .h-hero__shade { position: absolute; inset: 0; background:
-  linear-gradient(90deg, rgba(6, 8, 22, 0.9) 0%, rgba(6, 8, 22, 0.74) 30%, rgba(6, 8, 22, 0.28) 56%, rgba(6, 8, 22, 0) 72%),
+  linear-gradient(90deg, rgba(6, 8, 22, 0.88) 0%, rgba(6, 8, 22, 0.7) 27%, rgba(6, 8, 22, 0.2) 45%, rgba(6, 8, 22, 0) 58%),
   linear-gradient(180deg, rgba(6, 8, 22, 0.55) 0%, rgba(6, 8, 22, 0) 22%, rgba(6, 8, 22, 0) 62%, rgba(6, 8, 22, 0.92) 100%); }
 .h-hero__scan { position: absolute; inset: 0; pointer-events: none; opacity: 0.5; mix-blend-mode: overlay; background: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.06) 0 1px, transparent 1px 4px); }
-.h-hero__hud { position: absolute; top: calc(var(--hdr-h) + 14px); right: max(var(--gutter), (100% - var(--wrap-wide)) / 2); display: flex; flex-direction: column; align-items: flex-end; gap: 4px; font-family: var(--font-ui); font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; font-size: 0.86rem; color: var(--muted); text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9); }
-.hud-read b { color: var(--green-hi); font-weight: 700; margin-right: 6px; font-variant-numeric: tabular-nums; }
-.hud-read--sub { color: var(--subtle); font-size: 0.8rem; }
+.h-hero__ai { left: auto; right: max(var(--gutter), (100% - var(--wrap-wide)) / 2); top: calc(var(--hdr-h) + 12px); bottom: auto; }
+/* launch-window dial: the store's hours on a 24 h scale, live NYC time; techno gauge in the hero's lower right */
+.hud-dial { position: absolute; z-index: 2; right: max(var(--gutter), (100% - var(--wrap-wide)) / 2); bottom: 88px; display: flex; align-items: center; gap: 18px; pointer-events: none; }
+.hud-dial__read { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; font-family: var(--font-ui); font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; text-align: right; text-shadow: 0 1px 10px rgba(0, 0, 0, 0.95); }
+.hud-dial__k { font-size: 0.74rem; letter-spacing: 0.26em; color: var(--cyan-soft); }
+.hud-dial__state { display: inline-flex; align-items: center; gap: 8px; font-size: 1.15rem; color: #fff; }
+.hud-dial__state::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--subtle); }
+.hud-dial.is-open .hud-dial__state::before { background: var(--green-hi); box-shadow: 0 0 10px var(--green), 0 0 2px #fff; animation: blink 2.4s ease-in-out infinite; }
+.hud-dial.is-closed .hud-dial__state::before { background: var(--violet-hi); box-shadow: 0 0 10px var(--violet-hi); }
+.hud-dial__next { font-size: 0.86rem; color: var(--muted); }
+.hud-dial__geo { font-size: 0.74rem; color: var(--subtle); letter-spacing: 0.14em; }
+.hud-dial__gauge { position: relative; width: 148px; aspect-ratio: 1; flex: none; border-radius: 50%;
+  background: radial-gradient(circle, rgba(6, 8, 22, 0.8) 0 46%, rgba(10, 13, 36, 0.62) 47% 100%);
+  box-shadow: inset 0 0 0 1px rgba(0, 212, 255, 0.38), 0 0 0 5px rgba(6, 8, 22, 0.28), 0 0 50px -12px rgba(0, 212, 255, 0.55);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.hud-dial__fx { position: absolute; inset: 0; border-radius: 50%; filter: drop-shadow(0 0 4px rgba(124, 252, 0, 0.85)); }
+.hud-dial__fx > i, .hud-dial__gauge > i { position: absolute; display: block; }
+.hud-dial__ticks { inset: 0; border-radius: 50%; background: rgba(0, 212, 255, 0.6);
+  -webkit-mask: repeating-conic-gradient(from -1deg, #000 0 2deg, transparent 0 15deg), radial-gradient(closest-side, transparent 88%, #000 89% 97%, transparent 98%); -webkit-mask-composite: source-in;
+  mask: repeating-conic-gradient(from -1deg, #000 0 2deg, transparent 0 15deg), radial-gradient(closest-side, transparent 88%, #000 89% 97%, transparent 98%); mask-composite: intersect; }
+.hud-dial__win { inset: 0; border-radius: 50%; background: conic-gradient(from var(--win-a), var(--cyan), var(--green-hi) var(--win-s), transparent 0);
+  -webkit-mask: radial-gradient(closest-side, transparent 76%, #000 78% 84%, transparent 86%); mask: radial-gradient(closest-side, transparent 76%, #000 78% 84%, transparent 86%); }
+.hud-dial__lbl { left: 50%; top: 50%; font-style: normal; font-family: var(--font-ui); font-weight: 700; font-size: 0.66rem; letter-spacing: 0.06em; color: var(--subtle);
+  transform: translate(-50%, -50%) rotate(var(--a)) translateY(-36px) rotate(calc(-1 * var(--a))); }
+.hud-dial__sec { inset: 20px; border-radius: 50%; transform: rotate(var(--sec, 0deg)); transition: transform 0.4s var(--ease); }
+.hud-dial__sec::before { content: ''; position: absolute; left: 50%; top: -3px; width: 6px; height: 6px; margin-left: -3px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 8px var(--cyan), 0 0 2px #fff; }
+.hud-dial__needle { left: calc(50% - 1px); top: 4px; width: 2px; height: 26px; border-radius: 2px; background: linear-gradient(180deg, #fff, var(--green-hi)); box-shadow: 0 0 8px rgba(124, 252, 0, 0.95); transform-origin: 50% 70px; transform: rotate(var(--now, 0deg)); }
+.hud-dial__time { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1; }
+.hud-dial__time b { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: #fff; font-variant-numeric: tabular-nums; text-shadow: 0 0 12px rgba(0, 212, 255, 0.7); }
+.hud-dial__time small { margin-top: 5px; font-family: var(--font-ui); font-weight: 700; font-size: 0.64rem; letter-spacing: 0.3em; color: var(--cyan-soft); }
+@media (max-width: 1180px) { .hud-dial__read { display: none; } }
+@media (max-width: 1023px) { .hud-dial { display: none; } .h-hero__art img, .h-hero__video { object-position: 70% 50%; } }
 .h-hero__body { flex: 1; display: flex; align-items: center; padding-block: 18px clamp(64px, 8vh, 104px); }
 .h-hero__copy { max-width: 700px; }
 .h-hero__title { font-family: var(--font-display); font-weight: 900; text-transform: uppercase; font-size: clamp(2.6rem, 1.4rem + 4.2vw, 5.2rem); line-height: 0.92; letter-spacing: 0.01em; margin: 4px 0 16px; }
@@ -714,11 +743,11 @@ html.gate-open, html.drawer-open { overflow: hidden; }
   .h-why .sw-sun { left: 50%; --sun-size: 64vw; opacity: 0.55; }
 }
 @media (max-width: 639px) {
-  .h-hero { min-height: 0; }
-  .h-hero__hud { display: none; }
-  .h-hero__art img, .h-hero__video { object-position: 74% 50%; }
-  .h-hero__shade { background: linear-gradient(180deg, rgba(6, 8, 22, 0.55) 0%, rgba(6, 8, 22, 0.25) 24%, rgba(6, 8, 22, 0.78) 52%, rgba(6, 8, 22, 0.96) 100%); }
-  .h-hero__body { align-items: flex-end; padding-block: 44vw 16px; }
+  .h-hero { min-height: 0; background: var(--ink-950); --art-h: min(125vw, 620px); }
+  .h-hero__art { bottom: auto; height: var(--art-h); }
+  .h-hero__art img, .h-hero__video { object-position: 50% 50%; }
+  .h-hero__shade { background: linear-gradient(180deg, rgba(6, 8, 22, 0.5) 0%, rgba(6, 8, 22, 0) 20%, rgba(6, 8, 22, 0) 52%, rgba(6, 8, 22, 0.82) 80%, var(--ink-950) 100%); }
+  .h-hero__body { align-items: flex-end; padding-block: calc(var(--art-h) - var(--hdr-h) - 42vw) 16px; }
   .h-hero__deck { position: relative; transform: none; padding-bottom: 20px; }
   .deck { grid-template-columns: minmax(0, 1fr); }
   .deck__item { border-right: 0; border-bottom: 1px solid var(--line-soft); min-height: 64px; padding: 12px 16px; }
@@ -1087,3 +1116,196 @@ p.lbl { margin: 1.1em 0 0.15em; font-family: var(--font-ui); font-weight: 700; f
 /* phones: room under the hero copy for the AI disclosure tag (bottom right of the art) */
 @media (max-width: 639px) { .ph--ai:not(.ph--over) { padding-bottom: calc(var(--ph-pb) + 36px); } }
 .big-num { margin: 1.2em 0 0; font-family: var(--font-display); font-weight: 800; font-size: clamp(2rem, 1.4rem + 2vw, 3rem); line-height: 1; background: var(--grad-neon); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* gauge.css */
+/* gauge.css - "Neon Gauge" hover system. Every interactive surface powers up like a cockpit instrument on hover
+   or keyboard focus. Cards and tiles get a HUD layer (.hov, added by site.js, aria-hidden): neon corner brackets
+   that lock on, a scan line, a cursor spotlight, a segmented LED meter that charges, and where there is room a
+   dial gauge whose needle and neon arc sweep up the scale. Buttons charge a segmented meter or trace their border,
+   links fill a segmented underline, rows light a meter, nav labels ignite like neon tubes.
+   Decorative only: no gauge shows a number or makes a claim. Loaded after pages.css. */
+
+@property --g { syntax: '<angle>'; inherits: true; initial-value: 0deg; }
+@property --o { syntax: '<length>'; inherits: false; initial-value: 2px; }
+@property --trace { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+
+/* ---------- HUD layer on cards and tiles ---------- */
+.has-hov { --hov-on: 0; }
+.hov {
+  position: absolute; inset: 0; z-index: 4; pointer-events: none; border-radius: inherit; overflow: hidden; container-type: size;
+  --c: var(--green-hi); --l: 18px; --w: 2px; --o: 2px;
+  background:
+    linear-gradient(var(--c) 0 0) var(--o) var(--o) / var(--l) var(--w),
+    linear-gradient(var(--c) 0 0) var(--o) var(--o) / var(--w) var(--l),
+    linear-gradient(var(--c) 0 0) calc(100% - var(--o)) var(--o) / var(--l) var(--w),
+    linear-gradient(var(--c) 0 0) calc(100% - var(--o)) var(--o) / var(--w) var(--l),
+    linear-gradient(var(--c) 0 0) var(--o) calc(100% - var(--o)) / var(--l) var(--w),
+    linear-gradient(var(--c) 0 0) var(--o) calc(100% - var(--o)) / var(--w) var(--l),
+    linear-gradient(var(--c) 0 0) calc(100% - var(--o)) calc(100% - var(--o)) / var(--l) var(--w),
+    linear-gradient(var(--c) 0 0) calc(100% - var(--o)) calc(100% - var(--o)) / var(--w) var(--l);
+  background-repeat: no-repeat;
+  opacity: 0; transition: opacity 0.25s var(--ease), --o 0.3s var(--ease);
+}
+/* scan line: one neon pass top to bottom when the card powers up */
+.hov::before {
+  content: ''; position: absolute; left: 0; right: 0; top: 0; height: 34%;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 212, 255, 0.08) 62%, rgba(124, 252, 0, 0.5) 97%, rgba(255, 255, 255, 0.9) 99%, transparent 100%);
+  transform: translateY(-110%); opacity: 0;
+}
+/* spotlight: follows the pointer (--mx/--my from site.js), cyan core with a violet halo */
+.hov::after {
+  content: ''; position: absolute; inset: 0; mix-blend-mode: screen;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 30%), rgba(0, 212, 255, 0.22) 0%, rgba(166, 126, 240, 0.12) 22%, transparent 48%);
+  opacity: 0; transition: opacity 0.35s var(--ease);
+}
+/* segmented LED meter along the bottom edge: charges left to right */
+.hov__meter {
+  position: absolute; left: clamp(12px, 6cqw, 22px); right: clamp(12px, 6cqw, 22px); bottom: 3px; height: 11px;
+  background: repeating-linear-gradient(90deg, var(--green-hi) 0 9px, transparent 9px 13px) center / 100% 3px no-repeat;
+  filter: drop-shadow(0 0 4px rgba(124, 252, 0, 0.95));
+  clip-path: inset(0 100% 0 0); transition: clip-path 0.25s var(--ease);
+}
+
+/* dial gauge: 270-degree scale, ticks light as the arc sweeps, needle swings with a mechanical overshoot */
+.gauge {
+  position: absolute; top: clamp(10px, 4cqw, 16px); right: clamp(10px, 4cqw, 16px); width: clamp(40px, 15cqw, 58px); aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle, rgba(6, 8, 22, 0.9) 0 56%, rgba(10, 13, 36, 0.72) 57% 100%);
+  box-shadow: inset 0 0 0 1px rgba(0, 212, 255, 0.4), 0 0 0 3px rgba(6, 8, 22, 0.35), 0 10px 24px -10px rgba(0, 0, 0, 0.9);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  --g: 0deg;
+  opacity: 0; transform: scale(0.72) rotate(-40deg);
+  transition: opacity 0.2s, transform 0.3s var(--ease), --g 0.35s cubic-bezier(0.5, 0, 0.75, 0);
+}
+.gauge__fx { position: absolute; inset: 0; border-radius: 50%; filter: drop-shadow(0 0 3px rgba(124, 252, 0, 0.9)); }
+.gauge__fx > i, .gauge__needle { position: absolute; display: block; }
+.gauge__fx > i { inset: 0; border-radius: 50%; }
+.gauge__ticks {
+  background: conic-gradient(from 225deg, var(--green-hi) 0 var(--g), rgba(0, 212, 255, 0.5) var(--g) 270deg, transparent 0);
+  -webkit-mask: repeating-conic-gradient(from 224deg, #000 0 2.4deg, transparent 0 13.5deg), radial-gradient(closest-side, transparent 74%, #000 75% 92%, transparent 93%);
+  -webkit-mask-composite: source-in;
+  mask: repeating-conic-gradient(from 224deg, #000 0 2.4deg, transparent 0 13.5deg), radial-gradient(closest-side, transparent 74%, #000 75% 92%, transparent 93%);
+  mask-composite: intersect;
+}
+.gauge__arc {
+  background: conic-gradient(from 225deg, var(--cyan) 0deg, var(--green-hi) var(--g), transparent 0);
+  -webkit-mask: radial-gradient(closest-side, transparent 58%, #000 60% 67%, transparent 69%);
+  mask: radial-gradient(closest-side, transparent 58%, #000 60% 67%, transparent 69%);
+}
+.gauge__needle {
+  left: calc(50% - 1px); top: 20%; width: 2px; height: 30%; border-radius: 2px;
+  background: linear-gradient(180deg, #fff, var(--cyan)); box-shadow: 0 0 6px rgba(0, 212, 255, 0.95);
+  transform-origin: 50% 100%; transform: rotate(calc(var(--g) - 135deg));
+}
+.gauge::after { /* hub */
+  content: ''; position: absolute; left: 50%; top: 50%; width: 16%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%;
+  background: radial-gradient(circle, #fff 0 28%, var(--green-hi) 34% 62%, rgba(124, 252, 0, 0) 72%); box-shadow: 0 0 10px rgba(124, 252, 0, 0.85);
+}
+/* placement where a card already uses its top-right corner */
+.cat .gauge { top: auto; bottom: 58px; }
+.proto .gauge { top: 15px; right: 11px; width: 46px; }
+.proto__ico { transition: opacity 0.25s, transform 0.4s var(--ease); }
+
+/* ---- powered state: pointer over (site.js .is-hov, fine pointers only) or keyboard focus ---- */
+.has-hov:is(.is-hov, :focus-visible) > .hov { opacity: 1; --o: 12px; transition: opacity 0.2s var(--ease), --o 0.45s cubic-bezier(0.3, 1.4, 0.5, 1); }
+.has-hov:is(.is-hov, :focus-visible) > .hov::before { animation: hov-scan 1.15s var(--ease-in-out) 0.05s both; }
+.has-hov:is(.is-hov, :focus-visible) > .hov::after { opacity: 1; }
+.has-hov:is(.is-hov, :focus-visible) .hov__meter { clip-path: inset(0 0 0 0); transition: clip-path 0.75s cubic-bezier(0.65, 0, 0.35, 1) 0.1s; }
+.has-hov:is(.is-hov, :focus-visible) .gauge {
+  opacity: 1; transform: none; --g: var(--g-to, 238deg);
+  transition: opacity 0.2s, transform 0.5s var(--ease), --g 1.05s cubic-bezier(0.3, 1.45, 0.55, 1) 0.12s;
+}
+.proto.is-hov .proto__ico { opacity: 0; transform: scale(0.6) rotate(25deg); }
+@keyframes hov-scan {
+  0% { transform: translateY(-110%); opacity: 0; }
+  12% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateY(300%); opacity: 0; }
+}
+/* the white sheen on cards gives way to the neon scan */
+.card.has-hov::after { display: none; }
+/* stronger neon edge while powered */
+.has-hov.is-hov.neon-edge::before { opacity: 1; filter: drop-shadow(0 0 6px rgba(0, 212, 255, 0.6)); }
+.cat.has-hov.is-hov, .card.has-hov.is-hov { box-shadow: var(--glass-edge), 0 30px 70px -30px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(124, 252, 0, 0.45), 0 0 46px -8px rgba(0, 212, 255, 0.55); }
+.mega-tile.has-hov .hov { --l: 12px; }
+.hood-link.has-hov .hov, .contact-card.has-hov .hov, .cta-panel.has-hov .hov { --l: 14px; }
+
+/* ---------- buttons ---------- */
+/* a segmented charge meter fills under the label, segment by segment */
+.btn::before {
+  content: ''; position: absolute; left: 18px; right: 18px; bottom: 2px; height: 11px; z-index: -1; pointer-events: none;
+  background: repeating-linear-gradient(90deg, currentColor 0 7px, transparent 7px 10px) center / 100% 2px no-repeat;
+  opacity: 0; clip-path: inset(0 100% 0 0); transition: clip-path 0.2s, opacity 0.2s;
+}
+.btn:is(:hover, :focus-visible)::before { opacity: 0.8; clip-path: inset(0 0 0 0); transition: clip-path 0.55s steps(9, end) 0.05s, opacity 0.1s; }
+.btn--primary:is(:hover, :focus-visible) { animation: btn-pulse 1.8s ease-in-out 0.3s infinite; }
+@keyframes btn-pulse {
+  0%, 100% { box-shadow: 0 14px 40px -10px rgba(124, 252, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.4) inset, 0 0 0 0 rgba(124, 252, 0, 0); }
+  50% { box-shadow: 0 14px 46px -8px rgba(0, 212, 255, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.55) inset, 0 0 26px 2px rgba(124, 252, 0, 0.45); }
+}
+/* ghost: the border charges clockwise like a dial, the label glows */
+.btn--ghost::before { background-image: repeating-linear-gradient(90deg, var(--green-hi) 0 7px, transparent 7px 10px); filter: drop-shadow(0 0 3px rgba(124, 252, 0, 0.9)); }
+.btn--ghost::after, .btn--ghost:is(:hover, :focus-visible)::after {
+  inset: 0; padding: 1.5px; border-radius: inherit; transform: none;
+  background: conic-gradient(from -90deg, var(--cyan), var(--green-hi) var(--trace), transparent 0);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); mask-composite: exclude;
+}
+.btn--ghost::after { --trace: 0deg; transition: --trace 0.3s var(--ease); }
+.btn--ghost:is(:hover, :focus-visible)::after { --trace: 360deg; transition: --trace 0.75s cubic-bezier(0.65, 0, 0.35, 1); }
+.btn--ghost:is(:hover, :focus-visible) { text-shadow: 0 0 10px rgba(0, 212, 255, 0.85), 0 0 22px rgba(0, 212, 255, 0.35); background-color: rgba(0, 212, 255, 0.08); }
+
+/* ---------- links: segmented underline + neon glow ---------- */
+.link-arrow { position: relative; }
+.link-arrow::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 4px; height: 9px; pointer-events: none;
+  background: repeating-linear-gradient(90deg, var(--green-hi) 0 6px, transparent 6px 9px) center / 100% 2px no-repeat;
+  filter: drop-shadow(0 0 3px rgba(124, 252, 0, 0.9));
+  clip-path: inset(0 100% 0 0); transition: clip-path 0.2s;
+}
+.link-arrow:is(:hover, :focus-visible)::after { clip-path: inset(0 0 0 0); transition: clip-path 0.45s steps(8, end); }
+.link-arrow:is(:hover, :focus-visible) { text-shadow: 0 0 12px rgba(124, 252, 0, 0.6); }
+
+/* header nav: the underline becomes a segmented gauge and the label ignites like a neon tube */
+.nav__link::after { background: repeating-linear-gradient(90deg, var(--cyan) 0 6px, transparent 6px 9px); transform-origin: 0 50%; height: 3px; }
+.nav__link:is(:hover, :focus-visible)::after { transition: transform 0.4s steps(7, end); }
+.nav__link:is(:hover, :focus-visible), .nav__item.is-open > .nav__link { animation: neon-ignite 0.7s linear both; }
+@keyframes neon-ignite {
+  0% { text-shadow: none; }
+  8% { text-shadow: 0 0 10px rgba(0, 212, 255, 0.95); }
+  16% { text-shadow: none; }
+  30% { text-shadow: 0 0 12px rgba(0, 212, 255, 0.9), 0 0 24px rgba(0, 212, 255, 0.4); }
+  40% { text-shadow: 0 0 4px rgba(0, 212, 255, 0.4); }
+  58%, 100% { text-shadow: 0 0 8px rgba(0, 212, 255, 0.9), 0 0 22px rgba(0, 212, 255, 0.45); }
+}
+.mega__links a:is(:hover, :focus-visible) { box-shadow: inset 3px 0 0 var(--green-hi), inset 14px 0 18px -14px rgba(124, 252, 0, 0.7); text-shadow: 0 0 10px rgba(124, 252, 0, 0.55); }
+.ftr__col a:is(:hover, :focus-visible), .crumbs a:is(:hover, :focus-visible) { text-shadow: 0 0 10px rgba(124, 252, 0, 0.6); }
+.chip:is(a):is(:hover, :focus-visible) { border-color: var(--green); color: var(--green-hi); box-shadow: var(--glow-green); animation: neon-ignite-g 0.6s linear both; }
+@keyframes neon-ignite-g {
+  0%, 16% { text-shadow: none; } 8% { text-shadow: 0 0 10px rgba(124, 252, 0, 0.95); }
+  30% { text-shadow: 0 0 12px rgba(124, 252, 0, 0.9); } 40% { text-shadow: none; }
+  58%, 100% { text-shadow: 0 0 8px rgba(124, 252, 0, 0.85), 0 0 20px rgba(124, 252, 0, 0.4); }
+}
+
+/* ---------- rows: a meter charges along the bottom edge ---------- */
+.shelf::after, .deck__item--go::after {
+  content: ''; position: absolute; left: 18px; right: 18px; bottom: 1px; height: 9px; pointer-events: none;
+  background: repeating-linear-gradient(90deg, var(--green-hi) 0 10px, transparent 10px 14px) center / 100% 2px no-repeat;
+  filter: drop-shadow(0 0 4px rgba(124, 252, 0, 0.95));
+  clip-path: inset(0 100% 0 0); transition: clip-path 0.25s var(--ease);
+}
+.deck__item--go { position: relative; }
+.shelf:is(:hover, :focus-visible)::after, .deck__item--go:is(:hover, :focus-visible)::after { clip-path: inset(0 0 0 0); transition: clip-path 0.7s cubic-bezier(0.65, 0, 0.35, 1); }
+.shelf:is(:hover, :focus-visible) .shelf__t, .deck__item--go:is(:hover, :focus-visible) b { text-shadow: 0 0 12px rgba(124, 252, 0, 0.55); }
+/* distance rows: the bar is a scale with tick marks; a needle lights at the reading */
+.hood__bar { overflow: visible; background: repeating-linear-gradient(90deg, rgba(0, 212, 255, 0.35) 0 1px, transparent 1px 10%) 0 0 / 100% 100%, rgba(255, 255, 255, 0.08); }
+.hood__bar span { position: relative; }
+.hood__bar span::after { content: ''; position: absolute; right: -1px; top: -5px; width: 2px; height: 14px; border-radius: 2px; background: #fff; box-shadow: 0 0 8px var(--green), 0 0 2px #fff; opacity: 0; transition: opacity 0.3s; }
+.hood:is(:hover, :focus-visible) .hood__bar span::after { opacity: 1; }
+.hood:is(:hover, :focus-visible) .hood__mi { text-shadow: 0 0 10px rgba(0, 212, 255, 0.8); color: #fff; }
+
+/* ---------- touch, reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .hov::before { display: none; }
+  .hov, .hov::after, .hov__meter, .gauge, .btn::before, .btn--ghost::after, .link-arrow::after, .shelf::after, .deck__item--go::after { transition-duration: 0.01s !important; transition-delay: 0s !important; }
+  .btn--primary:is(:hover, :focus-visible), .nav__link:is(:hover, :focus-visible), .nav__item.is-open > .nav__link, .chip:is(a):is(:hover, :focus-visible) { animation: none; }
+}

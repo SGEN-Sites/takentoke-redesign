@@ -190,11 +190,30 @@
     });
   }
 
+  /* ---------- neon gauge hover layer (gauge.css): decorative, aria-hidden, added once per card or tile ---------- */
+  var HOV_SEL = '[data-tilt], .mega-tile, .mega-feature, .menu-tile, .contact-card, .cta-panel, .hood-link';
+  var DIAL_SEL = '.cat, .card--lift, .proto, .mega-tile, .menu-tile, .mega-feature';
+  var DIAL = '<span class="gauge"><span class="gauge__fx"><i class="gauge__ticks"></i><i class="gauge__arc"></i></span><i class="gauge__needle"></i></span>';
+  $$(HOV_SEL).forEach(function (el) {
+    if (el.classList.contains('has-hov')) return;
+    el.insertAdjacentHTML('beforeend', '<span class="hov" aria-hidden="true"><span class="hov__meter"></span>' + (el.matches(DIAL_SEL) ? DIAL : '') + '</span>');
+    el.classList.add('has-hov');
+    el.addEventListener('pointerenter', function (e) { if (e.pointerType !== 'touch') el.classList.add('is-hov'); });
+    el.addEventListener('pointerleave', function () { el.classList.remove('is-hov'); });
+    if (finePointer && !el.hasAttribute('data-tilt')) {
+      el.addEventListener('pointermove', function (e) {
+        var r = el.getBoundingClientRect();
+        el.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
+        el.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+      });
+    }
+  });
+
   /* ---------- hero video: source chosen after load (phone or desktop), never under reduced motion ---------- */
   $$('video[data-hero-video]').forEach(function (v) {
     if (reduce) return;
     function start() {
-      var phone = window.matchMedia('(max-width: 720px)').matches;
+      var phone = window.matchMedia('(max-width: 639px)').matches;
       var src = phone ? v.getAttribute('data-src-phone') : v.getAttribute('data-src');
       if (!src) return;
       v.src = src;
@@ -209,12 +228,35 @@
     }
   });
 
-  /* ---------- live New York clock for HUD readouts ---------- */
-  var clocks = $$('[data-clock]');
-  if (clocks.length) {
+  /* ---------- live New York clock + launch-window dial (the store's own hours; open state from them) ---------- */
+  var clocks = $$('[data-clock]'), clocksHm = $$('[data-clock-hm]'), dials = $$('[data-hours]');
+  if (clocks.length || clocksHm.length || dials.length) {
     var fmt;
-    try { fmt = new Intl.DateTimeFormat('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'America/New_York' }); } catch (e) { fmt = null; }
-    var tick = function () { var s = fmt ? fmt.format(new Date()) : ''; clocks.forEach(function (c) { c.textContent = s; }); };
+    try { fmt = new Intl.DateTimeFormat('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23', timeZone: 'America/New_York' }); } catch (e) { fmt = null; }
+    var prevS = null, turns = 0;
+    var tick = function () {
+      if (!fmt) return;
+      var p = {};
+      fmt.formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; });
+      var h = (+p.hour) % 24, m = +p.minute, s = +p.second;
+      var hh = (h < 10 ? '0' : '') + h, mm = p.minute;
+      clocks.forEach(function (c) { c.textContent = hh + ':' + mm + ':' + p.second; });
+      clocksHm.forEach(function (c) { c.textContent = hh + ':' + mm; });
+      if (prevS !== null && s < prevS) turns++;
+      prevS = s;
+      var now = h + m / 60 + s / 3600;
+      dials.forEach(function (d) {
+        var o = parseFloat(d.getAttribute('data-open')), cl = parseFloat(d.getAttribute('data-close'));
+        var open = now >= o && now < cl;
+        d.style.setProperty('--now', (now * 15).toFixed(2) + 'deg');
+        d.style.setProperty('--sec', (turns * 360 + s * 6) + 'deg');
+        d.classList.toggle('is-open', open);
+        d.classList.toggle('is-closed', !open);
+        var st = $('[data-hours-state]', d), nx = $('[data-hours-next]', d);
+        if (st) st.textContent = open ? 'Open now' : 'Closed now';
+        if (nx) nx.textContent = open ? 'Closes ' + d.getAttribute('data-close-l') : 'Opens ' + d.getAttribute('data-open-l');
+      });
+    };
     tick();
     setInterval(tick, 1000);
   }
