@@ -1,9 +1,9 @@
-# Reforge record: takentoke-redesign
+# Reforge record — takentoke-redesign
 
-- Source: https://takentoke.com/
+- Source: (not recorded)
 - Preview: https://sgen-sites.github.io/takentoke-redesign/
 - Repo: https://github.com/SGEN-Sites/takentoke-redesign
-- Built: 2026-11-11T01:42:14.073Z
+- Built: 2026-11-11T01:52:39.123Z
 - Gate: NOT-READY  (1 pass / 1 fail / 4 unproven)
 
 Every publish is one commit in this repo. Nothing is force-pushed, so each edit is
