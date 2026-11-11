@@ -209,12 +209,26 @@
     }
   });
 
-  /* ---------- hero video: source chosen after load (phone or desktop), never under reduced motion ---------- */
+  /* ---------- hero video: source chosen after load, never under reduced motion. Phones get the 4:5 cut; wider
+     screens get the smallest file at least as wide as the pixels the video covers (CSS width x device pixel ratio),
+     so a 1080p screen loads 1080p and a 2x laptop or 4K monitor loads 2160p. Data Saver keeps the smallest. ---------- */
+  function heroSource(v) {
+    if (window.matchMedia('(max-width: 639px)').matches) return v.getAttribute('data-src-phone');
+    var list = [];
+    try { list = JSON.parse(v.getAttribute('data-sources') || '[]'); } catch (e) { list = []; }
+    if (!list.length) return v.getAttribute('data-src');
+    list.sort(function (a, b) { return a.w - b.w; });
+    var r = v.getBoundingClientRect();
+    var need = Math.max(r.width, r.height * 16 / 9) * Math.min(window.devicePixelRatio || 1, 3);
+    var save = navigator.connection && navigator.connection.saveData;
+    var pick = list[0];
+    if (!save) for (var i = 0; i < list.length; i++) { pick = list[i]; if (list[i].w >= need * 0.92) break; }
+    return pick.src;
+  }
   $$('video[data-hero-video]').forEach(function (v) {
     if (reduce) return;
     function start() {
-      var phone = window.matchMedia('(max-width: 639px)').matches;
-      var src = phone ? v.getAttribute('data-src-phone') : v.getAttribute('data-src');
+      var src = heroSource(v);
       if (!src) return;
       v.src = src;
       v.muted = true;
